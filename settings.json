@@ -1,17 +1,17 @@
 {
     "tokens": {
         "youtube_api": "AIzaSyAHtJFK15DFfTaNRNZt6r1DnePzXIoMcSg",
-        "discord_token": "MzYxNTE2ODc1MzQ5NDkxNzEz.DK2nzw.1bBIw7cqOWsCUWMMVNNtBl2oPWE",
-        "discord_id": "361516875349491713",
-        "discord_secret": "_G4JylmtM2HMXQfQ7iZg6176hiOTWi3D"
+        "discord_token": "process.env.BOT_TOKEN",
+        "discord_id": "473498753819607050",
+        "discord_secret": "MQJbn0qJKNmJqyBOObauZQrbS28PTT-z"
     },
     "handles": {
-        "title": "#SnoopyBot #HappyHalloween",
-        "prefix": "-",
+        "title": "#MohaBot #OnlyMoha",
+        "prefix": "M",
         "admin_role": "348591674026622976",
-        "owner_id": "265279363199533068",
+        "owner_id": "459900164270981122",
         "page_limit": 5,
-        "icon_url": "https://cdn.discordapp.com/avatars/361516875349491713/8e84c208525ffcfecf407766e13b669d.png?size=128",
+        "icon_url": "https://media.discordapp.net/attachments/410912548016095243/473501738335338496/c12ea5ecb11991206935c81839993fd7.jpg",
         "invalid_command": "https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Close_Icon_Dark-128.png"
     }
 }
