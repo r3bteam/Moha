@@ -1002,7 +1002,6 @@ channel.send("I found the log channel!");
 	});
 
 bot.on('ready', (message) => {
-	bot.user.setUsername("Moha");
 	console.log("---------------Bot info--------------");
     console.log(`Bot name: ${bot.user.username}`);
     console.log(`Servers: ${bot.guilds.size}`);
