@@ -6,6 +6,7 @@
 //-------------------------->
 // -> Requirements
 const _discord 	= require("discord.js");
+const client = new Discord.Client();
 const _fs 		= require("fs");
 const _ytdl 	= require("ytdl-core");
 const _request 	= require("request");
