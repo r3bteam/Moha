@@ -1,5 +1,5 @@
 {
-  "name": "Snoopy",
+  "name": "Moha",
   "version": "0.5.0",
   "description": "A Beta Bot",
   "main": "node main.js",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/ThatMajesticGuy/scrooge-mc-bot-discord-bot"
   },
-  "author": "snoopy",
+  "author": "moha",
   "license": "MIT",
     "bugs": {
     "url": "https://github.com/An-Idiots-Guide/guidebot/issues"
