@@ -220,7 +220,6 @@ var commands = [
 		command_aliases: ["p"],
 		description: "Search for the request song and queue it",
 		args: ["url / search query"],
-		admin: false,
 		owner: true,
 		exec: async function(message, params)
 		{
