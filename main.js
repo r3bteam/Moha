@@ -220,7 +220,7 @@ var commands = [
 		command_aliases: ["p"],
 		description: "Search for the request song and queue it",
 		args: ["url / search query"],
-		owner: true,
+		owner_id: true,
 		exec: async function(message, params)
 		{
 			// > Check that the member is currently in a voice channel
