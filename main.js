@@ -6,12 +6,9 @@
 //-------------------------->
 // -> Requirements
 const _discord 	= require("discord.js");
-const Discord = require('discord.js');
-const client = new Discord.Client();
 const _fs 		= require("fs");
 const _ytdl 	= require("ytdl-core");
 const _request 	= require("request");
-const request = require('request');
 const _getytid	= require("get-youtube-id");	
 const _fetchvid = require("youtube-info");
 const _moment = require("moment");
@@ -23,12 +20,6 @@ const bot 		= new _discord.Client({ autoReconnect: true });
 var   package 	= JSON.parse(_fs.readFileSync('./package.json', 'utf-8'));
 var   config 	= JSON.parse(_fs.readFileSync('./settings.json', 'utf-8'));
 bot.settings = new Enmap({name: 'settingsmodlogs', persistent: true});
-client.on('ready', async () => {
-  console.log('I am ready!');
-
-  client.user.setPresence({ game: { name: 'Only Moha', type: 2 } });
-});
-
 const autoreply = {
 	dm_text: 		"Hi there! I currently don't have any functionality with direct messages.",
 	mention_text: 	"Use **" + config.handles.prefix + "commands** to see my commands list."
@@ -227,7 +218,8 @@ var commands = [
 		command_aliases: ["p"],
 		description: "Search for the request song and queue it",
 		args: ["url / search query"],
-    owner: true,
+		admin: false,
+		owner: true,
 		exec: async function(message, params)
 		{
 			// > Check that the member is currently in a voice channel
@@ -690,8 +682,7 @@ var commands = [
 			command_aliases: [],
 			description: "Flips a coin!",
 			args: [],
-      admin: false,
-      owner: true,
+			admin: false,
 			exec: function(message, params)
 			{
 				var textArray = [
@@ -957,7 +948,56 @@ bot.on("message", message =>
 	
 });
 
+bot.on("guildCreate", guild => {
+	const channel3 = guild.channels.find('name', 'general');
+	
+	var embed2 = new _discord.RichEmbed()
+	.setAuthor("Thanks For Inviting Me! - " + config.handles.title, config.handles.icon_url)
+	.addField("Information:", "Hello there!\nThanks for inviting me to your server! Here are a few thing to get started! \nFirstly, To see all of my commands do **-help [pageNumber]** (IN A CHANNEL)\nAnd I well that's everything you need to know me :thinking: Enjoy!", true)
+	.setColor(0x700a0a)
+	.setThumbnail(config.handles.icon_url)
+	.setTimestamp()
+	.setFooter(`Developed by ${package.author} - Version ${package.version}`, config.handles.icon_url);
 
+  if (!channel3) return guild.owner.send(embed2)
+	
+	var embed = new _discord.RichEmbed()
+	.setAuthor("Thanks For Inviting Me! - " + config.handles.title, config.handles.icon_url)
+	.addField("Information:", "Hello there!\nThanks for inviting me to your server! Here are a few thing to get started! \nFirstly, To see all of my commands do **-help [pageNumber]** (IN A CHANNEL)\nAnd I well that's everything you need to know me :thinking: Enjoy!", true)
+	.setColor(0x700a0a)
+	.setThumbnail(config.handles.icon_url)
+	.setTimestamp()
+	.setFooter(`Developed by ${package.author} - Version ${package.version}`, config.handles.icon_url);
+	
+	channel3.send(embed)
+guild.createChannel('welcome', 'text')
+  .then(channel => console.log(`Created new channel ${channel}`))
+  .catch(console.error);
+});
+
+const defaultSettings = {
+  modLogChannel: "mod-log"
+}
+
+bot.on("message", (message) => {
+  if (message.content === "Moha Find The Log Channel") {
+    const thisConf = bot.settings.get(message.guild.id);
+      const channel = message.guild.channels.find('name', `${thisConf.modLogChannel}`);
+if (!channel) message.reply("No channel found");
+channel.send("I found the log channel!");
+	}});
+	
+	bot.on("messageDelete", (message) => {
+		const thisConf = bot.settings.get(message.guild.id);
+		const channel = message.guild.channels.find('name', `${thisConf.modLogChannel}`);
+		if (!channel) return;
+		var embed = new _discord.RichEmbed()
+		.setTitle("Message Deleted - " + config.handles.title)
+		.setColor(0x00AE28)
+		.setThumbnail("https://cdn0.iconfinder.com/data/icons/office-and-job-1/100/007-98-128.png")
+		.setDescription(`${message.author.tag} has deleted this message:`, `${message}`)
+		channel.send({embed})
+	});
 
 bot.on('ready', (message) => {
 	bot.user.setUsername("Moha");
@@ -975,6 +1015,12 @@ bot.on('ready', (message) => {
 
 	handleMusic_Setup();
 	});
+
+	client.on('ready', async () => {
+		console.log('I am ready!');
+	  
+		client.user.setPresence({ game: { name: 'Only Moha', type: 2 } });
+	  });
 
 bot.login(process.env.BOT_TOKEN);
 //-------------------------->
