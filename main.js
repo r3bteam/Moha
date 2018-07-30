@@ -11,6 +11,7 @@ const client = new Discord.Client();
 const _fs 		= require("fs");
 const _ytdl 	= require("ytdl-core");
 const _request 	= require("request");
+const request = require('request');
 const _getytid	= require("get-youtube-id");	
 const _fetchvid = require("youtube-info");
 const _moment = require("moment");
