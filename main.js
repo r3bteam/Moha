@@ -1,8 +1,8 @@
 //-------------------------->
-// Discord Bot #SnoopyBot
+// Discord Bot #MohaBot
 //-------------------------->
 // Developed by Alex Hernandez
-// a.k.a. snoopy © 2017
+// a.k.a. Moha © 2017
 //-------------------------->
 // -> Requirements
 const _discord 	= require("discord.js");
@@ -23,6 +23,12 @@ const bot 		= new _discord.Client({ autoReconnect: true });
 var   package 	= JSON.parse(_fs.readFileSync('./package.json', 'utf-8'));
 var   config 	= JSON.parse(_fs.readFileSync('./settings.json', 'utf-8'));
 bot.settings = new Enmap({name: 'settingsmodlogs', persistent: true});
+client.on('ready', async () => {
+  console.log('I am ready!');
+
+  client.user.setPresence({ game: { name: 'Only Moha', type: 2 } });
+});
+
 const autoreply = {
 	dm_text: 		"Hi there! I currently don't have any functionality with direct messages.",
 	mention_text: 	"Use **" + config.handles.prefix + "commands** to see my commands list."
@@ -221,7 +227,7 @@ var commands = [
 		command_aliases: ["p"],
 		description: "Search for the request song and queue it",
 		args: ["url / search query"],
-		admin: false,
+    owner: true,
 		exec: async function(message, params)
 		{
 			// > Check that the member is currently in a voice channel
@@ -669,7 +675,7 @@ var commands = [
 		{
 			var embed = new _discord.RichEmbed()
 			.setAuthor("Server Info - " + config.handles.title, config.handles.icon_url)
-			.setDescription("Hi! I'm a bot created by snoopy#6927. I have a variety of features which you can find by typing **-cmds** into any channel.\n\n**Developer Information:**\nI'm a 14 year old developer studying Computer Science. I usually code only for fun.")
+			.setDescription("Hi! I'm a bot created by Moha#6927. I have a variety of features which you can find by typing **-cmds** into any channel.\n\n**Developer Information:**\nI'm a 14 year old developer studying Computer Science. I usually code only for fun.")
 			.setColor(0x00AE86)
 			.setThumbnail(config.handles.icon_url)
 			.setTimestamp()
@@ -684,7 +690,8 @@ var commands = [
 			command_aliases: [],
 			description: "Flips a coin!",
 			args: [],
-			admin: false,
+      admin: false,
+      owner: true,
 			exec: function(message, params)
 			{
 				var textArray = [
@@ -831,7 +838,7 @@ var commands = [
 			});
 
 			// > Send deletion message
-			message.channel.send(`:fingers_crossed: ${(amount-1)} message(s) deleted!`).then((m) => { setTimeout(() => { m.delete(); }, 5000); }).catch("[Snoopy] Message already deleted.");
+			message.channel.send(`:fingers_crossed: ${(amount-1)} message(s) deleted!`).then((m) => { setTimeout(() => { m.delete(); }, 5000); }).catch("[Moha] Message already deleted.");
 		}
 
 	},
@@ -942,7 +949,7 @@ bot.on("message", message =>
 			var msgAuthor = message.author.tag;
 			if(msg.indexOf(config.handles.prefix) === 0)
 			{
-				console.log("[Snoopy] Handling command query: '" + msg + "' Author: '" + msgAuthor + "'");
+				console.log("[Moha] Handling command query: '" + msg + "' Author: '" + msgAuthor + "'");
 				handleCommand(message, msg);
 			}
 		}
@@ -950,65 +957,15 @@ bot.on("message", message =>
 	
 });
 
-bot.on("guildCreate", guild => {
-	const channel3 = guild.channels.find('name', 'general');
-	
-	var embed2 = new _discord.RichEmbed()
-	.setAuthor("Thanks For Inviting Me! - " + config.handles.title, config.handles.icon_url)
-	.addField("Information:", "Hello there!\nThanks for inviting me to your server! Here are a few thing to get started! \nFirstly, To see all of my commands do **-help [pageNumber]** (IN A CHANNEL)\nAnd I well that's everything you need to know me :thinking: Enjoy!", true)
-	.setColor(0x700a0a)
-	.setThumbnail(config.handles.icon_url)
-	.setTimestamp()
-	.setFooter(`Developed by ${package.author} - Version ${package.version}`, config.handles.icon_url);
 
-  if (!channel3) return guild.owner.send(embed2)
-	
-	var embed = new _discord.RichEmbed()
-	.setAuthor("Thanks For Inviting Me! - " + config.handles.title, config.handles.icon_url)
-	.addField("Information:", "Hello there!\nThanks for inviting me to your server! Here are a few thing to get started! \nFirstly, To see all of my commands do **-help [pageNumber]** (IN A CHANNEL)\nAnd I well that's everything you need to know me :thinking: Enjoy!", true)
-	.setColor(0x700a0a)
-	.setThumbnail(config.handles.icon_url)
-	.setTimestamp()
-	.setFooter(`Developed by ${package.author} - Version ${package.version}`, config.handles.icon_url);
-	
-	channel3.send(embed)
-guild.createChannel('welcome', 'text')
-  .then(channel => console.log(`Created new channel ${channel}`))
-  .catch(console.error);
-});
-
-const defaultSettings = {
-  modLogChannel: "mod-log"
-}
-
-bot.on("message", (message) => {
-  if (message.content === "Snoopy Find The Log Channel") {
-    const thisConf = bot.settings.get(message.guild.id);
-      const channel = message.guild.channels.find('name', `${thisConf.modLogChannel}`);
-if (!channel) message.reply("No channel found");
-channel.send("I found the log channel!");
-	}});
-	
-	bot.on("messageDelete", (message) => {
-		const thisConf = bot.settings.get(message.guild.id);
-		const channel = message.guild.channels.find('name', `${thisConf.modLogChannel}`);
-		if (!channel) return;
-		var embed = new _discord.RichEmbed()
-		.setTitle("Message Deleted - " + config.handles.title)
-		.setColor(0x00AE28)
-		.setThumbnail("https://cdn0.iconfinder.com/data/icons/office-and-job-1/100/007-98-128.png")
-		.setDescription(`${message.author.tag} has deleted this message:`, `${message}`)
-		channel.send({embed})
-	});
 
 bot.on('ready', (message) => {
-	bot.user.setUsername("Snoopy");
+	bot.user.setUsername("Moha");
 	console.log("---------------Bot info--------------");
     console.log(`Bot name: ${bot.user.username}`);
     console.log(`Servers: ${bot.guilds.size}`);
     console.log(`Users: ${bot.users.size}`);
     console.log("--------------------------------------");
-	bot.user.setGame(`Type -help for help! | Version 0.5.0 | in ${bot.guilds.size} servers!`);
 
 	bot.guilds.forEach((g) => {
     if (!bot.settings.has(g.id)) {
