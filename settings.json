@@ -1,0 +1,17 @@
+{
+    "tokens": {
+        "youtube_api": "AIzaSyAHtJFK15DFfTaNRNZt6r1DnePzXIoMcSg",
+        "discord_token": "MzYxNTE2ODc1MzQ5NDkxNzEz.DK2nzw.1bBIw7cqOWsCUWMMVNNtBl2oPWE",
+        "discord_id": "361516875349491713",
+        "discord_secret": "_G4JylmtM2HMXQfQ7iZg6176hiOTWi3D"
+    },
+    "handles": {
+        "title": "#SnoopyBot #HappyHalloween",
+        "prefix": "-",
+        "admin_role": "348591674026622976",
+        "owner_id": "265279363199533068",
+        "page_limit": 5,
+        "icon_url": "https://cdn.discordapp.com/avatars/361516875349491713/8e84c208525ffcfecf407766e13b669d.png?size=128",
+        "invalid_command": "https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Close_Icon_Dark-128.png"
+    }
+}
